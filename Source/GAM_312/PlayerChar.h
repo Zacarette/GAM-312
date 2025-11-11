@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h" 
 #include "Resource_M.h"
 #include "Kismet/GameplayStatics.h"
+#include "BuildingPart.h"
 #include "PlayerChar.generated.h"
 UCLASS()
 class GAM_312_API APlayerChar : public ACharacter
@@ -95,4 +96,27 @@ public:
 
 	UFUNCTION()
 		void GiveResources(float amount, FString resourceType);
+
+	// Building
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Building Supplies")
+		TArray<int> BuildingArray;
+
+	UPROPERTY()
+		bool isBuilding;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+		TSubclassOf<ABuildingPart> BuildingPartClass;
+
+	UPROPERTY()
+		ABuildingPart* spawnedPart;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateResource(float woodAmount, float stoneAmount, FString buildingObject);
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnBuilding(int buildingID, bool& isSuccess);
+
+	UFUNCTION()
+	void RotateBuilding();
 };
