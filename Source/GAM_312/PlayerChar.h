@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "BuildingPart.h"
 #include "PlayerWidget.h"
+#include "ObjectiveWidget.h"
 #include "PlayerChar.generated.h"
 
 UCLASS()
@@ -114,16 +115,27 @@ public:
 		ABuildingPart* spawnedPart;
 
 	UFUNCTION(BlueprintCallable)
-	void UpdateResource(float woodAmount, float stoneAmount, FString buildingObject);
+		void UpdateResource(float woodAmount, float stoneAmount, FString buildingObject);
 
 	UFUNCTION(BlueprintCallable)
-	void SpawnBuilding(int buildingID, bool& isSuccess);
+		void SpawnBuilding(int buildingID, bool& isSuccess);
 
 	UFUNCTION()
-	void RotateBuilding();
+		void RotateBuilding();
 
 	// Player Widget
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UPlayerWidget* playerUI;
+
+	// Objective Widget
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UObjectiveWidget* objWidget;
+
+	UPROPERTY()
+		float objectsBuilt;
+
+	UPROPERTY()
+		float matsCollected;
 };
